@@ -3,6 +3,8 @@
 
 @section('content')
     <div class="container">
-        <contact-form />
+        <div class="contact-form">
+            <contact-form></contact-form>
+        </div>
     </div>
 @endsection

@@ -35,9 +35,6 @@
             elementum purus placerat eu. Nullam nec arcu sed nisl consequat pharetra in bibendum purus. Nam quis turpis at
             ligula egestas vulputate tempus at lacus.
         </p>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
+        <contact-form></contact-form>
     </div>
 @endsection

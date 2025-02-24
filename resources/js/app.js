@@ -1,13 +1,20 @@
-import { createApp } from "vue/dist/vue.esm-bundler";
+import { createApp } from "vue";
+import axios from 'axios';
 import TextBlock from "./components/TextBlock.vue";
 import ContactForm from "./components/ContactForm.vue";
+import * as bootstrap from "bootstrap";
 
+// Import images
 import.meta.glob(["../../images/**"]);
 
-import * as bootstrap from "bootstrap";
+// Make axios available globally
+window.axios = axios;
+
+// Make bootstrap available globally
 window.bootstrap = bootstrap;
 
+// Create and mount Vue app
 const app = createApp({});
-app.component("TextBlock", TextBlock);
-app.component("ContactForm", ContactForm);
+app.component("text-block", TextBlock);  // Use kebab-case for consistency
+app.component("contact-form", ContactForm);
 app.mount("#app");

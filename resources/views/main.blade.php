@@ -7,19 +7,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('meta_title')</title>
-    @vite(['resources/sass/app.scss'])
+    <script>
+        window.Laravel = {
+            csrfToken: '{{ csrf_token() }}'
+        };
+    </script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
-    <div id="app-container">
+    <div id="app">  
         <div>
             @include('header')
             @yield('content')
             @include('footer')
         </div>
     </div>
-
-    @vite(['resources/js/app.js'])
 </body>
 
 </html>

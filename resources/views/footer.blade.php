@@ -1,6 +1,6 @@
-<div class="container py-5 ms-n5 ms-lg-auto">
+<div class="container py-5">
     <div class="text-center">
-        <p>&copy; 2021 Company, Inc.</p>
+        <p>&copy; {{ date('Y') }} Company, Inc.</p>
     </div>
 </div>
 

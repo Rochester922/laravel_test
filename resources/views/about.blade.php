@@ -1,12 +1,12 @@
 @extends('main')
-@section('meta_title', 'Home')
+@section('meta_title', 'About')
 
 @section('content')
     <div class="container">
-        <dIv>
-            <texts-block />
-        </dIv>
-        <div class="accordion" id="accordionExampleWr">
+        <div class="text-block">
+            <text-block />
+        </div>
+        <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -14,7 +14,7 @@
                         Accordion Item #1
                     </button>
                 </h2>
-                <div id="collapseOneR" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
                         plugin adds the appropriate classes that we use to style each element. These classes control the
