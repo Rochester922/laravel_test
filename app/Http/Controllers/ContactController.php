@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
@@ -27,6 +28,14 @@ class ContactController extends Controller
                 'website' => 'string|max:0' // Honeypot validation
             ]);
 
+            // Save to database
+            $submission = ContactSubmission::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'message' => $validated['message'],
+                'ip_address' => $request->ip()
+            ]);
+
             try {
                 // Check mail configuration
                 if (empty(config('mail.mailers.smtp.host')) || empty(config('mail.mailers.smtp.port'))) {
@@ -42,10 +51,17 @@ class ContactController extends Controller
                 Mail::to($recipientEmail)->send(new ContactFormMail($validated));
             } catch (\Exception $e) {
                 \Log::error('Mail sending failed: ' . $e->getMessage());
-                throw new \Exception('Failed to send email: ' . $e->getMessage());
+                // Even if email fails, we still saved the submission
+                return response()->json([
+                    'message' => 'Message received but email notification failed',
+                    'submission_id' => $submission->id
+                ]);
             }
 
-            return response()->json(['message' => 'Message sent successfully']);
+            return response()->json([
+                'message' => 'Message sent successfully',
+                'submission_id' => $submission->id
+            ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {

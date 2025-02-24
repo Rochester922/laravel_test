@@ -20,6 +20,13 @@ class ContactFormTest extends TestCase
 
         $response->assertStatus(200);
         Mail::assertSent(ContactFormMail::class);
+        
+        // Assert the submission was saved to database
+        $this->assertDatabaseHas('contact_submissions', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'message' => 'Test message'
+        ]);
     }
 
     public function test_contact_form_validation(): void
